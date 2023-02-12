@@ -1,4 +1,4 @@
-import express, {json, Response, Request} from "express"
+import express, {json} from "express"
 import authRouter from "./routes/authRoutes"
 const app = express()
 app.use(json())
