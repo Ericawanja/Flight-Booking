@@ -23,7 +23,8 @@ import { sqlConfig } from "../Config";
   ) => {
     let request = await (await this.pool).request();
     let requestobj = this.createRequest(request, data);
-    let result = await request.execute(storedProcedure);
+    let result = await (await request.execute(storedProcedure)).recordset;
+    return result
   };
   async query(queryString: string) {
     return await (await this.pool).request().query(queryString);
