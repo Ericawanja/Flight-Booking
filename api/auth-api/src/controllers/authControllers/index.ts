@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { exec } from "../../helpers/db_connect";
 import path from "path";
 import dotenv from "dotenv";
+import { User } from "../../models";
 
 dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
@@ -44,21 +45,11 @@ export const register = async (req: ExtendedRequest, res: Response) => {
   }
 };
 
-class User {
-  constructor(
-    public Id: string,
-    public Name: string,
-    public email: string,
-    public password: string
-  ) {}
-}
-
 export const login = async (req: ExtendedRequest, res: Response) => {
   try {
     const { email, password } = req.body;
 
     const user: User[] = await exec("getUser", { email });
-   
 
     if (user.length === 0)
       return res.status(404).json({ error: "User not found" });
@@ -74,13 +65,11 @@ export const login = async (req: ExtendedRequest, res: Response) => {
       return rest;
     });
 
-    
-
     const token = jwt.sign(payload[0], process.env.SECRET_KEY as string, {
       expiresIn: "240000",
     });
 
-    return res.status(200).json({ message: "Login successful", token});
+    return res.status(200).json({ message: "Login successful", token });
   } catch (error: any) {
     console.log(error);
     res.status(500).json({ error });
