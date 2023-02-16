@@ -1,7 +1,7 @@
 import {Router} from "express"
-import { getAllBookedFlights } from '../controllers/index';
+import { getAllPendingFlights } from '../controllers/index';
 
 const flightsRouter = Router()
-flightsRouter.get("/", getAllBookedFlights)
+flightsRouter.get("/", getAllPendingFlights)
 
 export default flightsRouter

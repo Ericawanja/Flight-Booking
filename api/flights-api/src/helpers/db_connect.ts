@@ -16,7 +16,7 @@ class Connection {
   //exec request
   executeRequest = async (
     storedProcedure: string,
-    data: { [x: string]: string }
+    data: { [x: string]: string } = {}
   ) => {
     let request = await (await this.pool).request()
     let requestObj = this.createRequest(request, data)
