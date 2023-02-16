@@ -1,5 +1,5 @@
 create
-or alter procedure getAllPendingFlights AS Begin
+or alter procedure getPendingFlightsToday AS Begin
 select
     id,
     userID,
@@ -10,7 +10,6 @@ select
 from
     flights
 where
-    departureDate > CAST (GetDate() as date)
-    OR departureDate = CAST (GetDate() as date)
+    departureDate = CAST (GetDate() as date)
     AND departureTime > CAST (GetDate() as Time)
 END
