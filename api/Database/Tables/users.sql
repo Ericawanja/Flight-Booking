@@ -1,5 +1,5 @@
 create table users(
-    id varchar(100),
+    id varchar(100) Primary key,
     firstname varchar(100) Not Null,
     lastname varchar(100) Not Null,
     email varchar(300) Not Null unique,
