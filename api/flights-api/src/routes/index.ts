@@ -1,7 +1,11 @@
 import {Router} from "express"
-import { getAllPendingFlights } from '../controllers/index';
+import { getAllFlights, getAllPendingFlights, getFlightsOnParticularDay, getPastFlights, getPendingFlightsToday } from '../controllers/index';
 
 const flightsRouter = Router()
-flightsRouter.get("/", getAllPendingFlights)
+flightsRouter.get("/", getAllFlights)
+flightsRouter.get("/allPending", getAllPendingFlights)
+flightsRouter.get("/todays", getFlightsOnParticularDay)
+flightsRouter.get("/past", getPastFlights)
+flightsRouter.get("/upcoming", getPendingFlightsToday)
 
 export default flightsRouter
