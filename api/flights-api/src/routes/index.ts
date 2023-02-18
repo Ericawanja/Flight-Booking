@@ -8,14 +8,15 @@ import {
   getPastFlights,
   getPendingFlightsToday,
 } from "../controllers/index";
+import { verify } from "../middlewares/verify";
 
 const flightsRouter = Router();
-flightsRouter.get("/", getAllFlights);
-flightsRouter.get("/allPending", getAllPendingFlights);
-flightsRouter.get("/todays", getFlightsOnParticularDay);
-flightsRouter.get("/past", getPastFlights);
-flightsRouter.get("/upcoming", getPendingFlightsToday);
-flightsRouter.post("/book", addFlight);
-flightsRouter.delete("/:id", cancelFlight)
+flightsRouter.get("/", verify, getAllFlights);
+flightsRouter.get("/allPending", verify, getAllPendingFlights);
+flightsRouter.get("/todays", verify, getFlightsOnParticularDay);
+flightsRouter.get("/past",verify, getPastFlights);
+flightsRouter.get("/upcoming",verify, getPendingFlightsToday);
+flightsRouter.post("/book", verify, addFlight);
+flightsRouter.delete("/:id",verify, cancelFlight)
 
 export default flightsRouter;
