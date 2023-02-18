@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addFlight,
+  cancelFlight,
   getAllFlights,
   getAllPendingFlights,
   getFlightsOnParticularDay,
@@ -15,5 +16,6 @@ flightsRouter.get("/todays", getFlightsOnParticularDay);
 flightsRouter.get("/past", getPastFlights);
 flightsRouter.get("/upcoming", getPendingFlightsToday);
 flightsRouter.post("/book", addFlight);
+flightsRouter.delete("/:id", cancelFlight)
 
 export default flightsRouter;
